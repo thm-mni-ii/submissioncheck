@@ -21,7 +21,8 @@ import {Task} from '../../model/Task';
 import {CourseService} from '../../service/course.service';
 import {CourseRegistrationService} from '../../service/course-registration.service';
 import {ConfirmDialogComponent} from '../../dialogs/confirm-dialog/confirm-dialog.component';
-import {FeedbackAppService} from "../../service/feedback-app.service";
+import {FeedbackAppService} from '../../service/feedback-app.service';
+import {TaskPointsDialogComponent} from '../../dialogs/task-points-dialog/task-points-dialog.component';
 
 @Component({
   selector: 'app-course-detail',
@@ -73,7 +74,22 @@ export class CourseDetailComponent implements OnInit {
   }
 
   reloadTasks() {
-    this.taskService.getAllTasks(this.courseID).subscribe(tasks => this.tasks = tasks);
+    this.taskService.getAllTasks(this.courseID).subscribe(tasks => {
+      this.tasks = tasks;
+
+      this.dialog.open(TaskPointsDialogComponent, { // TODO
+        height: '85%',
+        width: '80rem',
+        data: {
+          courseID: this.courseID,
+          tasks: this.tasks
+        }
+      }).afterClosed().subscribe(res => {
+        if (res) {
+          this.snackbar.open('erfolgreich');
+        }
+      });
+    });
   }
 
   updateCourse() {
@@ -190,7 +206,19 @@ export class CourseDetailComponent implements OnInit {
   goToFBA() {
     this.feedbackAppService.getToken().subscribe((token) => {
       localStorage.setItem('flutter.authToken', JSON.stringify(token));
-      window.open('/feedbackApp/')
-    })
+      window.open('/feedbackApp/');
+    });
+  }
+
+  editPoints() {
+    this.dialog.open(TaskPointsDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {courseID: this.courseID}
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.snackbar.open('erfolgreich');
+      }
+    });
   }
 }

@@ -73,6 +73,7 @@ import { InfoComponent } from './tool-components/info/info.component';
 import { tap } from 'rxjs/operators';
 import {AuthService} from './service/auth.service';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { TaskPointsDialogComponent } from './dialogs/task-points-dialog/task-points-dialog.component';
 
 @Injectable()
 export class ApiURIHttpInterceptor implements HttpInterceptor {
@@ -143,6 +144,7 @@ export const httpInterceptorProviders = [
     ConfirmDialogComponent,
     InfoComponent,
     ReversePipe,
+    TaskPointsDialogComponent,
   ],
   imports: [
     BrowserModule,
