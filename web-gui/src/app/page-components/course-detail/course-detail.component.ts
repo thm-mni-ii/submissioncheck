@@ -23,7 +23,6 @@ import {CourseRegistrationService} from '../../service/course-registration.servi
 import {ConfirmDialogComponent} from '../../dialogs/confirm-dialog/confirm-dialog.component';
 import {FeedbackAppService} from '../../service/feedback-app.service';
 import {GotoLinksDialogComponent} from '../../dialogs/goto-links-dialog/goto-links-dialog.component';
-import {FeedbackAppService} from '../../service/feedback-app.service';
 import {TaskPointsDialogComponent} from '../../dialogs/task-points-dialog/task-points-dialog.component';
 
 @Component({
