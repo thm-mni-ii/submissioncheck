@@ -73,6 +73,7 @@ import { InfoComponent } from './tool-components/info/info.component';
 import { tap } from 'rxjs/operators';
 import {AuthService} from './service/auth.service';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { TaskPointsDialogComponent } from './dialogs/task-points-dialog/task-points-dialog.component';
 import {GoToComponent} from './page-components/goto/goto.component';
 import {GotoLinksDialogComponent} from './dialogs/goto-links-dialog/goto-links-dialog.component';
 
@@ -147,6 +148,7 @@ export const httpInterceptorProviders = [
     ReversePipe,
     GoToComponent,
     GotoLinksDialogComponent
+    TaskPointsDialogComponent,
   ],
   imports: [
     BrowserModule,
