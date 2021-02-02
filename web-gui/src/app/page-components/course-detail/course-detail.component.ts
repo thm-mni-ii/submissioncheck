@@ -22,6 +22,8 @@ import {CourseService} from '../../service/course.service';
 import {CourseRegistrationService} from '../../service/course-registration.service';
 import {ConfirmDialogComponent} from '../../dialogs/confirm-dialog/confirm-dialog.component';
 import {FeedbackAppService} from '../../service/feedback-app.service';
+import {GotoLinksDialogComponent} from '../../dialogs/goto-links-dialog/goto-links-dialog.component';
+import {FeedbackAppService} from '../../service/feedback-app.service';
 import {TaskPointsDialogComponent} from '../../dialogs/task-points-dialog/task-points-dialog.component';
 
 @Component({
@@ -190,11 +192,16 @@ export class CourseDetailComponent implements OnInit {
     });
   }
 
-  goToFBA() {
-    this.feedbackAppService.getToken().subscribe((token) => {
-      localStorage.setItem('flutter.authToken', JSON.stringify(token));
-      window.open('/feedbackApp/');
+  showGoLinks() {
+    this.dialog.open(GotoLinksDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {courseID: this.courseID}
     });
+  }
+
+  goToFBA() {
+    this.feedbackAppService.open(this.courseID, true).subscribe(() => {});
   }
 
   editPoints() {
@@ -210,5 +217,4 @@ export class CourseDetailComponent implements OnInit {
         this.snackbar.open('Punktevergabe abgeschlossen');
       }
     });
-  }
 }
