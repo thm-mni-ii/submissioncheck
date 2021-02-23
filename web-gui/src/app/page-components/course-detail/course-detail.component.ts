@@ -209,7 +209,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   goToFBA() {
-    this.feedbackAppService.open(this.courseID, true).subscribe(() => {});
+    this.feedbackAppService.open(this.courseID, true).subscribe(() => {
+    });
   }
 
   editPoints() {
