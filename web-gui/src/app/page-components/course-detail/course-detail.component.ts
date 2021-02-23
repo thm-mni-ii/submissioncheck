@@ -115,7 +115,7 @@ export class CourseDetailComponent implements OnInit {
     }).afterClosed()
       .subscribe(confirmed => {
         if (confirmed) {
-          this.courseRegistrationService.registerCourse( this.authService.getToken().id, this.courseID)
+          this.courseRegistrationService.registerCourse(this.authService.getToken().id, this.courseID)
             .subscribe(ok => this.ngOnInit(), error => console.error(error));
         }
       });
@@ -126,7 +126,10 @@ export class CourseDetailComponent implements OnInit {
    */
   exitCourse() {
     this.dialog.open(ConfirmDialogComponent, {
-      data: {title: 'Kurs verlassen?', message: 'Wollen Sie diesen Kurs verlassen? Alle ihre Abgaben könnten verloren gehen!'}
+      data: {
+        title: 'Kurs verlassen?',
+        message: 'Wollen Sie diesen Kurs verlassen? Alle ihre Abgaben könnten verloren gehen!'
+      }
     }).afterClosed()
       .subscribe(confirmed => {
         this.courseRegistrationService.deregisterCourse(this.authService.getToken().id, this.courseID)
@@ -200,7 +203,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   goToFBA() {
-    this.feedbackAppService.open(this.courseID, true).subscribe(() => {});
+    this.feedbackAppService.open(this.courseID, true).subscribe(() => {
+    });
   }
 
   editPoints() {
@@ -216,4 +220,6 @@ export class CourseDetailComponent implements OnInit {
         this.snackbar.open('Punktevergabe abgeschlossen');
       }
     });
+  }
+
 }
