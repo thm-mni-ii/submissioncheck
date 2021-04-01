@@ -2,13 +2,14 @@ package de.thm.ii.fbs.controller
 
 import java.io.FileInputStream
 import java.nio.file.{Files, Path}
-
 import com.fasterxml.jackson.databind.JsonNode
 import de.thm.ii.fbs.controller.exception.{BadRequestException, ForbiddenException, ResourceNotFoundException}
 import de.thm.ii.fbs.model.{CheckrunnerConfiguration, CourseRole, GlobalRole}
 import de.thm.ii.fbs.services.persistance.{CheckerConfigurationService, CourseRegistrationService, StorageService}
 import de.thm.ii.fbs.services.security.AuthService
+import de.thm.ii.fbs.util.FileUploadUtils
 import de.thm.ii.fbs.util.JsonWrapper.jsonNodeToWrapper
+
 import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -203,7 +204,7 @@ class CheckerConfigurationController {
       this.ccs.find(cid, tid, ccid) match {
         case Some(checkerConfiguration) =>
           val tempDesc = Files.createTempFile("fbs", ".tmp")
-          file.transferTo(tempDesc)
+          FileUploadUtils.transferAndFilter(file, tempDesc, b => b != '\r')
           storageFn(ccid, tempDesc)
           postHook(checkerConfiguration)
         case _ => throw new ResourceNotFoundException()

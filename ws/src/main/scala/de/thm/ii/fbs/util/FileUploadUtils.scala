@@ -21,6 +21,7 @@ object FileUploadUtils {
   def transferAndFilter(file: MultipartFile, dest: Path, filter: Byte => Boolean): Unit = {
     val contentType = file.getContentType
 
+    // TODO remvoe contentType check and run only for bash-checker?
     if (contentType != null && (contentType.startsWith("text/") || contentType.startsWith("application/x-shellscript"))) {
       FileCopyUtils.copy(file.getBytes.filter(filter), Files.newOutputStream(dest))
     } else {
