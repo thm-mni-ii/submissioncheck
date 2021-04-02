@@ -75,6 +75,7 @@ import {AuthService} from './service/auth.service';
 import { ReversePipe } from './pipes/reverse.pipe';
 import {GoToComponent} from './page-components/goto/goto.component';
 import {GotoLinksDialogComponent} from './dialogs/goto-links-dialog/goto-links-dialog.component';
+import {SubmissionSpreadsheetComponent} from './page-components/task-detail/submission-spreadsheet/submission-spreadsheet.component';
 
 @Injectable()
 export class ApiURIHttpInterceptor implements HttpInterceptor {
@@ -83,6 +84,7 @@ export class ApiURIHttpInterceptor implements HttpInterceptor {
     const clonedRequest: HttpRequest<any> = req.clone({
       // url: (req.url.search('localhost') >= 0) ? req.url : 'https://localhost'  + req.url // 'https://fk-server.mni.thm.de'
       // url: 'https://feedback.mni.thm.de/'  + req.url // 'https://fk-server.mni.thm.de'
+      url: 'https://localhost/' + req.url,
     });
 
     return next.handle(clonedRequest).pipe(tap(event => {
@@ -126,6 +128,7 @@ export const httpInterceptorProviders = [
     TaskPreviewComponent,
     SubmissionFileComponent,
     SubmissionTextComponent,
+    SubmissionSpreadsheetComponent,
     ResultsComponent,
     DropzoneComponent,
     MyCoursesComponent,
