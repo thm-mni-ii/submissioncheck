@@ -76,6 +76,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import {GoToComponent} from './page-components/goto/goto.component';
 import {GotoLinksDialogComponent} from './dialogs/goto-links-dialog/goto-links-dialog.component';
 import {SubmissionSpreadsheetComponent} from './page-components/task-detail/submission-spreadsheet/submission-spreadsheet.component';
+import {SpreadsheetComponent} from './dialogs/spreadsheet-dialog/spreadsheet/spreadsheet.component';
+import {SpreadsheetDialogComponent} from './dialogs/spreadsheet-dialog/spreadsheet-dialog.component';
 
 @Injectable()
 export class ApiURIHttpInterceptor implements HttpInterceptor {
@@ -150,6 +152,8 @@ export const httpInterceptorProviders = [
     ReversePipe,
     GoToComponent,
     GotoLinksDialogComponent,
+    SpreadsheetComponent,
+    SpreadsheetDialogComponent,
   ],
   imports: [
     BrowserModule,
