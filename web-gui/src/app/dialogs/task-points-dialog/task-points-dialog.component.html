@@ -4,10 +4,15 @@
   <div id="task-points-title" matDialogTitle>Punkte vergeben</div>
   <div matDialogContent class="flex-container">
     <div class="flex-item task-box">
-      <mat-checkbox [(ngModel)]="checked"
+      <mat-checkbox [(ngModel)]="checkAll"
                     (ngModelChange)="selectAll()"
                     [labelPosition]="labelPosition">
         Alle markieren
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="unCheckAll"
+                    (ngModelChange)="unSelectAll()"
+                    [labelPosition]="labelPosition">
+        Keine auswählen
       </mat-checkbox>
       <div class="scroll-box">
         <div class="task-item" *ngFor="let task of tasks">

@@ -25,7 +25,8 @@ export class TaskPointsDialogComponent implements OnInit {
   hidePoints = false;
   toggleColor = 'primary';
 
-  checked = false;
+  checkAll = false;
+  unCheckAll = false;
   allChecked = false;
   labelPosition: 'before' | 'after' = 'after';
 
@@ -66,7 +67,7 @@ export class TaskPointsDialogComponent implements OnInit {
     this.index = i;
     this.selected = this.allRequirements[i];
     this.checkFormula(this.selected.bonusFormula);
-    this.checked = false;
+    this.checkAll = false;
   }
 
   /**
@@ -147,15 +148,21 @@ export class TaskPointsDialogComponent implements OnInit {
   }
 
   selectAll() {
-    if (this.checked) {
+    if (this.checkAll) {
       this.selected.tasks = this.tasks.map(el => el); // TODO: map??
     } else { this.selected.tasks = []; }
+  }
+
+  unSelectAll() {
+    if (this.unCheckAll) {
+      this.selected.tasks = []; // TODO: map??
+    } else { this.selected.tasks = this.tasks.map(el => el); }
   }
 
   select(task: Task) {
     if (this.selected.tasks.find(el => el.id === task.id)) {
       this.selected.tasks.splice(this.selected.tasks.map(e => e.id).indexOf(task.id), 1);
-      this.checked = false;
+      this.checkAll = false;
     } else {
       this.selected.tasks.push(task);
     }
