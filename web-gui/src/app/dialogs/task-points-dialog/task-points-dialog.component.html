@@ -6,14 +6,14 @@
     <div class="flex-item task-box">
       <mat-checkbox [(ngModel)]="checkAll"
                     (ngModelChange)="selectAll()"
-                    [labelPosition]="labelPosition">
-        Alle markieren
+                    [labelPosition]="labelPosition" [value]="'Alle'">
+        {{ checkAll ? "Keine markieren" : "Alle markieren" }}
       </mat-checkbox>
-      <mat-checkbox [(ngModel)]="unCheckAll"
+      <!--<mat-checkbox [(ngModel)]="unCheckAll"
                     (ngModelChange)="unSelectAll()"
                     [labelPosition]="labelPosition">
         Keine auswählen
-      </mat-checkbox>
+      </mat-checkbox>-->
       <div class="scroll-box">
         <div class="task-item" *ngFor="let task of tasks">
           <mat-card class="card" [ngClass]="getClass(task)" (click)="select(task)">
