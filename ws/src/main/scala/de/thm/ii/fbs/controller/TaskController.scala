@@ -1,8 +1,6 @@
 package de.thm.ii.fbs.controller
 
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
 
 import com.fasterxml.jackson.databind.JsonNode
 import de.thm.ii.fbs.controller.exception.{BadRequestException, ForbiddenException, ResourceNotFoundException}
@@ -108,7 +106,7 @@ class TaskController {
           mediaInformation.retrive("idField").asText(),
           mediaInformation.retrive("inputFields").asText(),
           mediaInformation.retrive("outputFields").asText(),
-          mediaInformation.retrive("decimals").asInt(),
+          mediaInformation.retrive("decimals").asInt()
         ) match {
           case (Some(idField), Some(inputFields), Some(outputFields), Some(decimals)) => taskService.create(cid,
             Task(name, deadline, "application/x-spreadsheet", desc.getOrElse(""),
